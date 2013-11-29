@@ -24,4 +24,7 @@ require 'nokogiri'
 RSpec.configure do |config|
   config.raise_errors_for_deprecations!
   config.expect_with(:rspec) { |c| c.syntax = :expect }
+
+  config.before { @original_config = Premailer::Rails.config.dup }
+  config.after { Premailer::Rails.config = @original_config }
 end
